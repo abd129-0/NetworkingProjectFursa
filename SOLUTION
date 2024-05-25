@@ -1,26 +1,43 @@
 Local DNS Server IP
 -------------------
-<ip-here>
+10.0.0.2
 
 
 
 Default gateway IP
 -------------------
-<ip-here>
+10.0.0.1
 
 
 
 DHCP IP allocation sys-logs
 -------------------
-<logs-here>
+#DISCOVER:
+2024-05-21T10:16:05.629226+00:00 ip-10-0-0-171 dhcpcd[451]: ens5: soliciting a DHCP lease
+OFFER:
+2024-05-21T10:16:05.629231+00:00 ip-10-0-0-171 dhcpcd[451]: ens5: offered 10.0.0.171 from 10.0.0.1
+REQUEST:
+2024-05-21T10:16:05.629236+00:00 ip-10-0-0-171 dhcpcd[451]: ens5: leased 10.0.0.171 for 3600 seconds
+ACK:
+2024-05-21T10:16:05.629436+00:00 ip-10-0-0-171 systemd-networkd[516]: ens5: DHCPv4 address 10.0.0.171/24, gateway 10.0.0.1 acquired from 10.0.0.1
+
 
 
 
 Public to private num of hops
 -------------------
-<answer-here>
+Since only the first hop provided a response and no further responses were received for the
+remaining hops up to the maximum of 30, the effective number of hops with responses is 1.
 
 
 DNS queries from the private instance
 -------------------
-<answer-here>
+DNS resolving can be attempt in the private instance
+public and private instances works in the same VPC
+Query: www.google.com IN A
+Response: www.google.com A 142.250.74.100
+Resolver Used: 127.0.0.53#53 (local DNS resolver)
+Query Time: 1 millisecond
+Protocol: UDP
+Query Date/Time: Tue May 21 19:26:46 UTC 2024
+Message Size: 59 bytes
