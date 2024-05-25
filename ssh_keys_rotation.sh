@@ -41,7 +41,7 @@ replace_old_key() {
 
 # Function to override the existing authorized_keys with the new public key
 override_authorized_keys() {
-    ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_IP" "mkdir -p ~/.ssh && cat $NEW_KEY_PATH.pub > ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh"
+    ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_IP" "mkdir -p ~/.ssh && echo '' > ~/.ssh/authorized_keys && cat $NEW_KEY_PATH.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh"
 }
 
 # Function to set correct permissions for the new key
