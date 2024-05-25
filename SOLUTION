@@ -21,8 +21,6 @@ ACK:
 2024-05-21T10:16:05.629436+00:00 ip-10-0-0-171 systemd-networkd[516]: ens5: DHCPv4 address 10.0.0.171/24, gateway 10.0.0.1 acquired from 10.0.0.1
 
 
-
-
 Public to private num of hops
 -------------------
 Since only the first hop provided a response and no further responses were received for the
