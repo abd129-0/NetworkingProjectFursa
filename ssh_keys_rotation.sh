@@ -30,7 +30,7 @@ generate_new_key_pair() {
 
 # Function to append the new public key to the authorized_keys on the private instance
 append_new_key_to_authorized_keys() {
-    cat $NEW_KEY_PATH.pub | ssh -i "$KEY_PATH" ubuntu@$PRIVATE_IP "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh"
+    cat $NEW_KEY_PATH.pub | ssh -i "$KEY_PATH" ubuntu@$PRIVATE_IP "cat > ~/.ssh/authorized_keys"
 }
 
 # Function to replace the old key with the new key
@@ -39,10 +39,6 @@ replace_old_key() {
     sudo rm $NEW_KEY_PATH.pub
 }
 
-# Function to override the existing authorized_keys with the new public key
-override_authorized_keys() {
-    ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_IP" "mkdir -p ~/.ssh && echo '' > ~/.ssh/authorized_keys && cat $NEW_KEY_PATH.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh"
-}
 
 # Function to set correct permissions for the new key
 set_key_permissions() {
@@ -74,9 +70,6 @@ test_key_connection
 
 # Generate a new key pair
 generate_new_key_pair
-
-# Override the existing authorized_keys with the new public key
-override_authorized_keys
 
 # Replace the old key with the new key in the KEY_PATH
 replace_old_key
