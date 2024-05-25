@@ -77,5 +77,5 @@ replace_old_key
 # Set correct permissions for the new key at KEY_PATH
 set_key_permissions
 
-# Complete key rotation and display the final message
+# Complete key rotation and display the final message!
 complete_key_rotation
