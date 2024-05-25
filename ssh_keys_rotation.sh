@@ -30,7 +30,7 @@ generate_new_key_pair() {
 
 # Function to append the new public key to the authorized_keys on the private instance
 append_new_key_to_authorized_keys() {
-    cat $NEW_KEY_PATH.pub | ssh -o StrictHostKeyChecking=accept-new -i "$KEY_PATH" ubuntu@$PRIVATE_IP "cat > ~/.ssh/authorized_keys"
+    cat $NEW_KEY_PATH.pub | ssh -i "$KEY_PATH" ubuntu@$PRIVATE_IP "cat > ~/.ssh/authorized_keys"
 }
 
 # Function to replace the old key with the new key
