@@ -39,6 +39,11 @@ replace_old_key() {
     sudo rm $NEW_KEY_PATH.pub
 }
 
+# Function to override the existing authorized_keys with the new public key
+override_authorized_keys() {
+    ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_IP" "mkdir -p ~/.ssh && cat $NEW_KEY_PATH.pub > ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh"
+}
+
 # Function to set correct permissions for the new key
 set_key_permissions() {
     sudo chmod 400 $KEY_PATH
@@ -70,8 +75,8 @@ test_key_connection
 # Generate a new key pair
 generate_new_key_pair
 
-# Append the new public key to authorized_keys on the private instance
-append_new_key_to_authorized_keys
+# Override the existing authorized_keys with the new public key
+override_authorized_keys
 
 # Replace the old key with the new key in the KEY_PATH
 replace_old_key
